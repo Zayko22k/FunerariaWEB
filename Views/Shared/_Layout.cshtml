@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    @Styles.Render("~/Content/css")
+    <link rel="Stylesheet" href="~/Content/mycss/main.css" type="text/css" />
+    <link rel="Stylesheet" href="~/Content/mycss/myStyle.css" type="text/css" />
+</head>
+<body>
+    <div class="topnav" id="myTopnav">
+        <div class="item">
+            <a href="#contact">Contact</a>
+            <a href="#about">About</a>
+            <div class="nav-user">
+                <a id="miCuenta" href="#about">Mi Cuenta</a>
+                <a style="color:#ffffff">|</a>
+                <a id="registrarme" href="#about">Registrarse</a>
+            </div>
+
+        </div>
+    </div>
+    <!--Bar -->
+    <div class="nav-head">
+        <img src="~/Content/Imagenes/logoEmpresa.png" alt="Trulli" width="200" height="180">
+        <nav class="nav-titulo">
+            <ul class="menu">
+                <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                <li>@Html.ActionLink("Planes", "Index", "plans")</li>
+                <li>@Html.ActionLink("Sobre", "Index", "Inicio")</li>
+                <li>@Html.ActionLink("Cremación", "Index", "Inicio")</li>
+                <li>@Html.ActionLink("Funenaria", "Index", "Inicio")</li>
+            </ul>
+        </nav>
+    </div>
+    <nav class="nav__cont">
+        <ul class="nav">
+            <li class="nav__items ">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                    <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z" />
+                </svg>
+                <a href="">Inicio</a>
+            </li>
+
+            <li class="nav__items ">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16">
+                    <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z" />
+                </svg>
+                <a href="">Planes</a>
+            </li>
+            <li class="nav__items ">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                </svg>
+                @Html.ActionLink("Iniciar sesión", "IndexLogin", "Login")
+            </li>
+        </ul>
+    </nav>
+    <div>
+        @RenderBody()
+
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+
+    </script>
+    <script type="text/javascript">
+        $('ul li').on('click', function () {
+            $('li').removeClass('active');
+            $(this).addClass('active');
+        });
+    </script>
+    <script type="text/javascript">
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('modal-login');
+
+        signUpButton.addEventListener('click', () => {
+            container.classList.add("right-panel-active");
+        });
+
+        signInButton.addEventListener('click', () => {
+            container.classList.remove("right-panel-active");
+        });
+    </script>
+</body>
+</html>

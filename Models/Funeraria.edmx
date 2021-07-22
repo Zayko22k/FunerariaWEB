@@ -1,0 +1,688 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FunerariaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="boleta">
+          <Key>
+            <PropertyRef Name="idboleta" />
+          </Key>
+          <Property Name="idboleta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="plan_id" Type="int" Nullable="false" />
+          <Property Name="usuario_id" Type="int" Nullable="false" />
+          <Property Name="pago_id" Type="int" Nullable="false" />
+          <Property Name="created_at" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="parque_id" Type="int" Nullable="false" />
+          <Property Name="fechaFuneral" Type="datetime" Nullable="false" />
+          <Property Name="fallecido_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="fallecido">
+          <Key>
+            <PropertyRef Name="idfallecido" />
+          </Key>
+          <Property Name="idfallecido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rut" Type="nchar" MaxLength="12" Nullable="false" />
+          <Property Name="nombre" Type="nchar" MaxLength="45" Nullable="false" />
+          <Property Name="apellidoP" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="apellidoM" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="fechaNacimiento" Type="datetime" Nullable="false" />
+          <Property Name="fechaDefuncion" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pago">
+          <Key>
+            <PropertyRef Name="idpago" />
+          </Key>
+          <Property Name="idpago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="parque">
+          <Key>
+            <PropertyRef Name="idparque" />
+          </Key>
+          <Property Name="idparque" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="direccion" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="horario" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="telefono" Type="nchar" MaxLength="12" Nullable="false" />
+          <Property Name="region_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="planes">
+          <Key>
+            <PropertyRef Name="idplanes" />
+          </Key>
+          <Property Name="idplanes" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="primer_contenido" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="segundo_contenido" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="tercer_contenido" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="cuarto_contenido" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="quinto_contenido" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="precio" Type="decimal" Precision="6" Scale="3" Nullable="false" />
+          <Property Name="tipoplan_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="region">
+          <Key>
+            <PropertyRef Name="idregion" />
+          </Key>
+          <Property Name="idregion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tipoplan">
+          <Key>
+            <PropertyRef Name="idtipoplan" />
+          </Key>
+          <Property Name="idtipoplan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipousuario">
+          <Key>
+            <PropertyRef Name="idtipousuario" />
+          </Key>
+          <Property Name="idtipousuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipo" Type="nchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="idusuario" />
+          </Key>
+          <Property Name="idusuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nchar" MaxLength="45" Nullable="false" />
+          <Property Name="apellidoP" Type="nchar" MaxLength="45" Nullable="false" />
+          <Property Name="apellidoM" Type="nchar" MaxLength="45" Nullable="false" />
+          <Property Name="correo" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="telefono" Type="nchar" MaxLength="12" Nullable="false" />
+          <Property Name="pass" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="tipousuario_id" Type="int" Nullable="false" />
+          <Property Name="created_at" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <Association Name="FK_boleta_boleta">
+          <End Role="boleta" Type="Self.boleta" Multiplicity="1" />
+          <End Role="boleta1" Type="Self.boleta" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="boleta">
+              <PropertyRef Name="idboleta" />
+            </Principal>
+            <Dependent Role="boleta1">
+              <PropertyRef Name="idboleta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_boleta_fallecido">
+          <End Role="fallecido" Type="Self.fallecido" Multiplicity="1" />
+          <End Role="boleta" Type="Self.boleta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fallecido">
+              <PropertyRef Name="idfallecido" />
+            </Principal>
+            <Dependent Role="boleta">
+              <PropertyRef Name="fallecido_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_boleta_pago">
+          <End Role="pago" Type="Self.pago" Multiplicity="1" />
+          <End Role="boleta" Type="Self.boleta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pago">
+              <PropertyRef Name="idpago" />
+            </Principal>
+            <Dependent Role="boleta">
+              <PropertyRef Name="pago_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_boleta_parque">
+          <End Role="parque" Type="Self.parque" Multiplicity="1" />
+          <End Role="boleta" Type="Self.boleta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="parque">
+              <PropertyRef Name="idparque" />
+            </Principal>
+            <Dependent Role="boleta">
+              <PropertyRef Name="parque_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_boleta_plan">
+          <End Role="planes" Type="Self.planes" Multiplicity="1" />
+          <End Role="boleta" Type="Self.boleta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="planes">
+              <PropertyRef Name="idplanes" />
+            </Principal>
+            <Dependent Role="boleta">
+              <PropertyRef Name="plan_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_boleta_usuario">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="boleta" Type="Self.boleta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idusuario" />
+            </Principal>
+            <Dependent Role="boleta">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_parque_region1">
+          <End Role="region" Type="Self.region" Multiplicity="1" />
+          <End Role="parque" Type="Self.parque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="region">
+              <PropertyRef Name="idregion" />
+            </Principal>
+            <Dependent Role="parque">
+              <PropertyRef Name="region_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_plan_tipoplan">
+          <End Role="tipoplan" Type="Self.tipoplan" Multiplicity="1" />
+          <End Role="planes" Type="Self.planes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoplan">
+              <PropertyRef Name="idtipoplan" />
+            </Principal>
+            <Dependent Role="planes">
+              <PropertyRef Name="tipoplan_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usuario_tipousuario">
+          <End Role="tipousuario" Type="Self.tipousuario" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipousuario">
+              <PropertyRef Name="idtipousuario" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="tipousuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FunerariaModelStoreContainer">
+          <EntitySet Name="boleta" EntityType="Self.boleta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="fallecido" EntityType="Self.fallecido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pago" EntityType="Self.pago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="parque" EntityType="Self.parque" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="planes" EntityType="Self.planes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="region" EntityType="Self.region" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipoplan" EntityType="Self.tipoplan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipousuario" EntityType="Self.tipousuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_boleta_boleta" Association="Self.FK_boleta_boleta">
+            <End Role="boleta" EntitySet="boleta" />
+            <End Role="boleta1" EntitySet="boleta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_boleta_fallecido" Association="Self.FK_boleta_fallecido">
+            <End Role="fallecido" EntitySet="fallecido" />
+            <End Role="boleta" EntitySet="boleta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_boleta_pago" Association="Self.FK_boleta_pago">
+            <End Role="pago" EntitySet="pago" />
+            <End Role="boleta" EntitySet="boleta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_boleta_parque" Association="Self.FK_boleta_parque">
+            <End Role="parque" EntitySet="parque" />
+            <End Role="boleta" EntitySet="boleta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_boleta_plan" Association="Self.FK_boleta_plan">
+            <End Role="planes" EntitySet="planes" />
+            <End Role="boleta" EntitySet="boleta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_boleta_usuario" Association="Self.FK_boleta_usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="boleta" EntitySet="boleta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_parque_region1" Association="Self.FK_parque_region1">
+            <End Role="region" EntitySet="region" />
+            <End Role="parque" EntitySet="parque" />
+          </AssociationSet>
+          <AssociationSet Name="FK_plan_tipoplan" Association="Self.FK_plan_tipoplan">
+            <End Role="tipoplan" EntitySet="tipoplan" />
+            <End Role="planes" EntitySet="planes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuario_tipousuario" Association="Self.FK_usuario_tipousuario">
+            <End Role="tipousuario" EntitySet="tipousuario" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FunerariaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="boleta">
+          <Key>
+            <PropertyRef Name="idboleta" />
+          </Key>
+          <Property Name="idboleta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="plan_id" Type="Int32" Nullable="false" />
+          <Property Name="usuario_id" Type="Int32" Nullable="false" />
+          <Property Name="pago_id" Type="Int32" Nullable="false" />
+          <Property Name="created_at" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="parque_id" Type="Int32" Nullable="false" />
+          <Property Name="fechaFuneral" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fallecido_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="boleta1" Relationship="Self.FK_boleta_boleta" FromRole="boleta" ToRole="boleta1" />
+          <NavigationProperty Name="boleta2" Relationship="Self.FK_boleta_boleta" FromRole="boleta1" ToRole="boleta" />
+          <NavigationProperty Name="fallecido" Relationship="Self.FK_boleta_fallecido" FromRole="boleta" ToRole="fallecido" />
+          <NavigationProperty Name="pago" Relationship="Self.FK_boleta_pago" FromRole="boleta" ToRole="pago" />
+          <NavigationProperty Name="parque" Relationship="Self.FK_boleta_parque" FromRole="boleta" ToRole="parque" />
+          <NavigationProperty Name="planes" Relationship="Self.FK_boleta_plan" FromRole="boleta" ToRole="planes" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK_boleta_usuario" FromRole="boleta" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="fallecido">
+          <Key>
+            <PropertyRef Name="idfallecido" />
+          </Key>
+          <Property Name="idfallecido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rut" Type="String" MaxLength="12" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="45" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="apellidoP" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="apellidoM" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="fechaNacimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechaDefuncion" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="boleta" Relationship="Self.FK_boleta_fallecido" FromRole="fallecido" ToRole="boleta" />
+        </EntityType>
+        <EntityType Name="pago">
+          <Key>
+            <PropertyRef Name="idpago" />
+          </Key>
+          <Property Name="idpago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="45" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="boleta" Relationship="Self.FK_boleta_pago" FromRole="pago" ToRole="boleta" />
+        </EntityType>
+        <EntityType Name="parque">
+          <Key>
+            <PropertyRef Name="idparque" />
+          </Key>
+          <Property Name="idparque" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="horario" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="12" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="region_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="boleta" Relationship="Self.FK_boleta_parque" FromRole="parque" ToRole="boleta" />
+          <NavigationProperty Name="region" Relationship="Self.FK_parque_region1" FromRole="parque" ToRole="region" />
+        </EntityType>
+        <EntityType Name="planes">
+          <Key>
+            <PropertyRef Name="idplanes" />
+          </Key>
+          <Property Name="idplanes" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="primer_contenido" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="segundo_contenido" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="tercer_contenido" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="cuarto_contenido" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="quinto_contenido" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Precision="6" Scale="3" Nullable="false" />
+          <Property Name="tipoplan_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="boleta" Relationship="Self.FK_boleta_plan" FromRole="planes" ToRole="boleta" />
+          <NavigationProperty Name="tipoplan" Relationship="Self.FK_plan_tipoplan" FromRole="planes" ToRole="tipoplan" />
+        </EntityType>
+        <EntityType Name="region">
+          <Key>
+            <PropertyRef Name="idregion" />
+          </Key>
+          <Property Name="idregion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="parque" Relationship="Self.FK_parque_region1" FromRole="region" ToRole="parque" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tipoplan">
+          <Key>
+            <PropertyRef Name="idtipoplan" />
+          </Key>
+          <Property Name="idtipoplan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="45" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="planes" Relationship="Self.FK_plan_tipoplan" FromRole="tipoplan" ToRole="planes" />
+        </EntityType>
+        <EntityType Name="tipousuario">
+          <Key>
+            <PropertyRef Name="idtipousuario" />
+          </Key>
+          <Property Name="idtipousuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipo" Type="String" MaxLength="45" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK_usuario_tipousuario" FromRole="tipousuario" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="idusuario" />
+          </Key>
+          <Property Name="idusuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="45" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="apellidoP" Type="String" MaxLength="45" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="apellidoM" Type="String" MaxLength="45" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="12" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="pass" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="tipousuario_id" Type="Int32" Nullable="false" />
+          <Property Name="created_at" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="boleta" Relationship="Self.FK_boleta_usuario" FromRole="usuario" ToRole="boleta" />
+          <NavigationProperty Name="tipousuario" Relationship="Self.FK_usuario_tipousuario" FromRole="usuario" ToRole="tipousuario" />
+        </EntityType>
+        <Association Name="FK_boleta_boleta">
+          <End Role="boleta" Type="Self.boleta" Multiplicity="1" />
+          <End Role="boleta1" Type="Self.boleta" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="boleta">
+              <PropertyRef Name="idboleta" />
+            </Principal>
+            <Dependent Role="boleta1">
+              <PropertyRef Name="idboleta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_boleta_fallecido">
+          <End Role="fallecido" Type="Self.fallecido" Multiplicity="1" />
+          <End Role="boleta" Type="Self.boleta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fallecido">
+              <PropertyRef Name="idfallecido" />
+            </Principal>
+            <Dependent Role="boleta">
+              <PropertyRef Name="fallecido_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_boleta_pago">
+          <End Role="pago" Type="Self.pago" Multiplicity="1" />
+          <End Role="boleta" Type="Self.boleta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pago">
+              <PropertyRef Name="idpago" />
+            </Principal>
+            <Dependent Role="boleta">
+              <PropertyRef Name="pago_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_boleta_parque">
+          <End Role="parque" Type="Self.parque" Multiplicity="1" />
+          <End Role="boleta" Type="Self.boleta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="parque">
+              <PropertyRef Name="idparque" />
+            </Principal>
+            <Dependent Role="boleta">
+              <PropertyRef Name="parque_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_boleta_plan">
+          <End Role="planes" Type="Self.planes" Multiplicity="1" />
+          <End Role="boleta" Type="Self.boleta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="planes">
+              <PropertyRef Name="idplanes" />
+            </Principal>
+            <Dependent Role="boleta">
+              <PropertyRef Name="plan_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_boleta_usuario">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="boleta" Type="Self.boleta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idusuario" />
+            </Principal>
+            <Dependent Role="boleta">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_parque_region1">
+          <End Role="region" Type="Self.region" Multiplicity="1" />
+          <End Role="parque" Type="Self.parque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="region">
+              <PropertyRef Name="idregion" />
+            </Principal>
+            <Dependent Role="parque">
+              <PropertyRef Name="region_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_plan_tipoplan">
+          <End Role="tipoplan" Type="Self.tipoplan" Multiplicity="1" />
+          <End Role="planes" Type="Self.planes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoplan">
+              <PropertyRef Name="idtipoplan" />
+            </Principal>
+            <Dependent Role="planes">
+              <PropertyRef Name="tipoplan_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usuario_tipousuario">
+          <End Role="tipousuario" Type="Self.tipousuario" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipousuario">
+              <PropertyRef Name="idtipousuario" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="tipousuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FunerariaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="boleta" EntityType="Self.boleta" />
+          <EntitySet Name="fallecido" EntityType="Self.fallecido" />
+          <EntitySet Name="pago" EntityType="Self.pago" />
+          <EntitySet Name="parque" EntityType="Self.parque" />
+          <EntitySet Name="planes" EntityType="Self.planes" />
+          <EntitySet Name="region" EntityType="Self.region" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="tipoplan" EntityType="Self.tipoplan" />
+          <EntitySet Name="tipousuario" EntityType="Self.tipousuario" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" />
+          <AssociationSet Name="FK_boleta_boleta" Association="Self.FK_boleta_boleta">
+            <End Role="boleta" EntitySet="boleta" />
+            <End Role="boleta1" EntitySet="boleta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_boleta_fallecido" Association="Self.FK_boleta_fallecido">
+            <End Role="fallecido" EntitySet="fallecido" />
+            <End Role="boleta" EntitySet="boleta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_boleta_pago" Association="Self.FK_boleta_pago">
+            <End Role="pago" EntitySet="pago" />
+            <End Role="boleta" EntitySet="boleta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_boleta_parque" Association="Self.FK_boleta_parque">
+            <End Role="parque" EntitySet="parque" />
+            <End Role="boleta" EntitySet="boleta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_boleta_plan" Association="Self.FK_boleta_plan">
+            <End Role="planes" EntitySet="planes" />
+            <End Role="boleta" EntitySet="boleta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_boleta_usuario" Association="Self.FK_boleta_usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="boleta" EntitySet="boleta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_parque_region1" Association="Self.FK_parque_region1">
+            <End Role="region" EntitySet="region" />
+            <End Role="parque" EntitySet="parque" />
+          </AssociationSet>
+          <AssociationSet Name="FK_plan_tipoplan" Association="Self.FK_plan_tipoplan">
+            <End Role="tipoplan" EntitySet="tipoplan" />
+            <End Role="planes" EntitySet="planes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuario_tipousuario" Association="Self.FK_usuario_tipousuario">
+            <End Role="tipousuario" EntitySet="tipousuario" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FunerariaModelStoreContainer" CdmEntityContainer="FunerariaEntities">
+          <EntitySetMapping Name="boleta">
+            <EntityTypeMapping TypeName="FunerariaModel.boleta">
+              <MappingFragment StoreEntitySet="boleta">
+                <ScalarProperty Name="idboleta" ColumnName="idboleta" />
+                <ScalarProperty Name="plan_id" ColumnName="plan_id" />
+                <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+                <ScalarProperty Name="pago_id" ColumnName="pago_id" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="parque_id" ColumnName="parque_id" />
+                <ScalarProperty Name="fechaFuneral" ColumnName="fechaFuneral" />
+                <ScalarProperty Name="fallecido_id" ColumnName="fallecido_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fallecido">
+            <EntityTypeMapping TypeName="FunerariaModel.fallecido">
+              <MappingFragment StoreEntitySet="fallecido">
+                <ScalarProperty Name="idfallecido" ColumnName="idfallecido" />
+                <ScalarProperty Name="rut" ColumnName="rut" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidoP" ColumnName="apellidoP" />
+                <ScalarProperty Name="apellidoM" ColumnName="apellidoM" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="fechaDefuncion" ColumnName="fechaDefuncion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pago">
+            <EntityTypeMapping TypeName="FunerariaModel.pago">
+              <MappingFragment StoreEntitySet="pago">
+                <ScalarProperty Name="idpago" ColumnName="idpago" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="parque">
+            <EntityTypeMapping TypeName="FunerariaModel.parque">
+              <MappingFragment StoreEntitySet="parque">
+                <ScalarProperty Name="idparque" ColumnName="idparque" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="horario" ColumnName="horario" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="region_id" ColumnName="region_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="planes">
+            <EntityTypeMapping TypeName="FunerariaModel.planes">
+              <MappingFragment StoreEntitySet="planes">
+                <ScalarProperty Name="idplanes" ColumnName="idplanes" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="primer_contenido" ColumnName="primer_contenido" />
+                <ScalarProperty Name="segundo_contenido" ColumnName="segundo_contenido" />
+                <ScalarProperty Name="tercer_contenido" ColumnName="tercer_contenido" />
+                <ScalarProperty Name="cuarto_contenido" ColumnName="cuarto_contenido" />
+                <ScalarProperty Name="quinto_contenido" ColumnName="quinto_contenido" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="tipoplan_id" ColumnName="tipoplan_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="region">
+            <EntityTypeMapping TypeName="FunerariaModel.region">
+              <MappingFragment StoreEntitySet="region">
+                <ScalarProperty Name="idregion" ColumnName="idregion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="FunerariaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipoplan">
+            <EntityTypeMapping TypeName="FunerariaModel.tipoplan">
+              <MappingFragment StoreEntitySet="tipoplan">
+                <ScalarProperty Name="idtipoplan" ColumnName="idtipoplan" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipousuario">
+            <EntityTypeMapping TypeName="FunerariaModel.tipousuario">
+              <MappingFragment StoreEntitySet="tipousuario">
+                <ScalarProperty Name="idtipousuario" ColumnName="idtipousuario" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="FunerariaModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidoP" ColumnName="apellidoP" />
+                <ScalarProperty Name="apellidoM" ColumnName="apellidoM" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="tipousuario_id" ColumnName="tipousuario_id" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

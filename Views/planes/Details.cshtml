@@ -1,0 +1,82 @@
+﻿@model FunerariaMuertoFeliz.Models.planes
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>planes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.primer_contenido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.primer_contenido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.segundo_contenido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.segundo_contenido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tercer_contenido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tercer_contenido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cuarto_contenido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cuarto_contenido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quinto_contenido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quinto_contenido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipoplan.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipoplan.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idplanes }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
