@@ -12,7 +12,14 @@ namespace FunerariaMuertoFeliz.Controllers
         {
             return View();
         }
-
+        public ActionResult IndexAdmin()
+        {
+            return View();
+        }
+        public ActionResult IndexCliente()
+        {
+            return View();
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

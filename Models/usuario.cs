@@ -11,7 +11,8 @@ namespace FunerariaMuertoFeliz.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class usuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,8 +25,12 @@ namespace FunerariaMuertoFeliz.Models
         public string nombre { get; set; }
         public string apellidoP { get; set; }
         public string apellidoM { get; set; }
+        [ScaffoldColumn(false)]
+        [Required(ErrorMessage = "Correo requerido")]
+        [StringLength(45)]
         public string correo { get; set; }
         public string telefono { get; set; }
+        [Required(ErrorMessage = "Contraseña requerida")]
         public string pass { get; set; }
         public int tipousuario_id { get; set; }
         public byte[] created_at { get; set; }

@@ -15,20 +15,40 @@ namespace FunerariaMuertoFeliz.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Login(string email, string pass)
+        public ActionResult IndexLogin(string email, string pass)
         {
-            using (var db = new FunerariaEntities())
+
+            if (email.Equals("") || pass.Equals(""))
             {
-                var linq = from u in db.usuario
-                           where u.correo == email && u.pass == pass && u.tipousuario_id== 1
-                           select u;
-                if (linq.Count() > 0)
+                ViewBag.ErrorSession = "Rellene los campos necesarios";
+                
+            }
+            else
+            {
+                using (var db = new FunerariaEntities())
                 {
-                    Session["usuario"] = linq.First();
+                    var linq = from u in db.usuario
+                               where u.correo == email && u.pass == pass && u.tipousuario_id == 1
+                               select u;
+                    if (linq.Count() > 0)
+                    {
+                        Session["usuario"] = linq.First();
+                        return Redirect("~/Home/IndexCliente");
+                    }
+                    var linq2 = from u in db.usuario
+                                where u.correo == email && u.pass == pass && u.tipousuario_id == 2
+                                select u;
+
+                    if (linq2.Count() > 0)
+                    {
+                        Session["admin"] = linq.First();
+                        return Redirect("~/Home/IndexAdmin");
+                    }
+                  ViewBag.ErrorSession = "Usuario y/o contraseña incorrecto(s)";
+
                 }
             }
-            return View();
-        }
-
+                return View();
+            }
     }
 }

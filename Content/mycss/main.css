@@ -274,6 +274,8 @@
 
 .modal-login {
     margin-left: 30%;
+    top: 250px;
+    z-index: 100;
 }
 
     .modal-login h1 {
@@ -357,7 +359,7 @@
     overflow: hidden;
     width: 768px;
     max-width: 100%;
-    min-height: 480px;
+    min-height: 580px;
 }
 
 .form-container {
