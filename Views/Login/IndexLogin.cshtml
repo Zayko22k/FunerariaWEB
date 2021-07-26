@@ -1,25 +1,50 @@
-﻿@{
+﻿@model FunerariaMuertoFeliz.Models.usuario
+@{
     ViewBag.Title = "IndexLogin";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="modal-login" id="modal-login">
     <div class="form-container sign-up-container">
-        <form action="#">
+        <form action="~/usuarios/CrearUsuario" method="post">
+            @Html.AntiForgeryToken()
             <h1>Crear Cuenta</h1>
-            <input type="text" placeholder="Nombre" />
-            <input type="text" placeholder="Apellido paterno" />
-            <input type="text" placeholder="Apellido materno" />
-            <input type="email" placeholder="Correo" />
-            <input type="password" placeholder="Contraseña" />
-            <input type="password" placeholder="Repita contraseña" />
-            <button>Sign Up</button>
+            <br />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { placeholder = "Nombre" } })
+            @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+
+            @Html.EditorFor(model => model.apellidoP, new { htmlAttributes = new { placeholder = "Apellido Paterno" } })
+            @Html.ValidationMessageFor(model => model.apellidoP, "", new { @class = "text-danger" })
+
+
+            @Html.EditorFor(model => model.apellidoM, new { htmlAttributes = new { placeholder = "Apellido Materno" } })
+            @Html.ValidationMessageFor(model => model.apellidoM, "", new { @class = "text-danger" })
+
+            @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { placeholder = "Telefono" } })
+            @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
+
+            @Html.EditorFor(model => model.correo, new { htmlAttributes = new { placeholder = "Correo" } })
+            @Html.ValidationMessageFor(model => model.correo, "", new { @class = "text-danger" })
+
+            @Html.PasswordFor(model => model.pass, new { placeholder = "Contraseña" })
+            @Html.ValidationMessageFor(model => model.pass, "", new { @class = "text-danger" })
+
+
+            <span class="text-danger">
+                @ViewBag.ErrorSession
+            </span>
+            <br />
+            <br />
+            <button type="submit" value="CrearUsuario">Registrarse</button>
         </form>
     </div>
     <div class="form-container sign-in-container" dis>
         <!--Begin Inicio de Sesión-->
         <form action="~/Login/IndexLogin" method="post">
             <h1>Login</h1>
+            <br />
             <input type="email" name="email" placeholder="Correo" />
             <input type="password" name="pass" placeholder="Contraseña" />
             <a href="#">Olvidaste tu contraseña?</a>
@@ -50,3 +75,6 @@
         </div>
     </div>
 </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bff1ec7a6018428fb43e2a6da1a94449" Name="Diagram1">
+      <Diagram DiagramId="bc3d979d570741a28230efae78bf401f" Name="Diagram1">
         <EntityTypeShape EntityType="FunerariaModel.boleta" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="FunerariaModel.fallecido" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
         <EntityTypeShape EntityType="FunerariaModel.pago" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
@@ -13,7 +13,7 @@
         <EntityTypeShape EntityType="FunerariaModel.region" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="FunerariaModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FunerariaModel.tipoplan" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FunerariaModel.tipousuario" Width="1.5" PointX="0.75" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FunerariaModel.tipousuario" Width="1.5" PointX="0.75" PointY="16.5" IsExpanded="true" />
         <EntityTypeShape EntityType="FunerariaModel.usuario" Width="1.5" PointX="3" PointY="15.875" IsExpanded="true" />
         <AssociationConnector Association="FunerariaModel.FK_boleta_boleta" ManuallyRouted="false" />
         <AssociationConnector Association="FunerariaModel.FK_boleta_fallecido" ManuallyRouted="false" />

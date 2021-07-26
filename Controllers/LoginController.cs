@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace FunerariaMuertoFeliz.Controllers
 {
+  
     public class LoginController : Controller
     {
         // GET: Login
@@ -41,7 +42,7 @@ namespace FunerariaMuertoFeliz.Controllers
 
                     if (linq2.Count() > 0)
                     {
-                        Session["admin"] = linq.First();
+                        Session["admin"] = linq2.First();
                         return Redirect("~/Home/IndexAdmin");
                     }
                   ViewBag.ErrorSession = "Usuario y/o contraseña incorrecto(s)";
@@ -50,5 +51,11 @@ namespace FunerariaMuertoFeliz.Controllers
             }
                 return View();
             }
+        public ActionResult Logout()
+        {
+            Session["usuario"] = null;
+            Session.Abandon();
+            return Redirect("~/Login/IndexLogin");
+        }
     }
 }

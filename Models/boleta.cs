@@ -18,10 +18,11 @@ namespace FunerariaMuertoFeliz.Models
         public int plan_id { get; set; }
         public int usuario_id { get; set; }
         public int pago_id { get; set; }
-        public byte[] created_at { get; set; }
+        public System.DateTime created_at { get; set; }
         public int parque_id { get; set; }
         public System.DateTime fechaFuneral { get; set; }
         public int fallecido_id { get; set; }
+        public List<pago> listapago { get; set; }
     
         public virtual boleta boleta1 { get; set; }
         public virtual boleta boleta2 { get; set; }

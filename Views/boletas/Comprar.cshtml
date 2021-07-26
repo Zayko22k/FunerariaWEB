@@ -1,0 +1,107 @@
+﻿@model FunerariaMuertoFeliz.Models.boleta
+@{
+    ViewBag.Title = "Comprar";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+<style>
+    .container-card {
+      
+        width: 100vh;
+        margin-left: 500px;
+        background: #1c1d22;
+        height: 100vh;
+    }
+
+    .container-2 {
+        height: 100%;
+        margin-top: 200px;
+    }
+
+    .fecha {
+      
+    }
+</style>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container-card">
+        <form method="post" action="~/boletas/Comprar">
+            <div class="container-2">
+                    <table class="table-bordered">
+                        <tr>
+                            <th>
+                                <h3>Datos del Plan</h3>
+                                <input style="display:none" name="plan_id" type="number" value="@Model.planes.idplanes" />                       
+                            </th>
+                            <th>
+                                <h3>Datos del Facellido</h3>        
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <h5>@Model.planes.nombre</h5>
+                                <h5>@Model.planes.primer_contenido</h5>
+                                <h5>@Model.planes.segundo_contenido</h5>
+                                <h5>@Model.planes.tercer_contenido</h5>
+                                <h5>@Model.planes.cuarto_contenido</h5>
+                                <h5>@Model.planes.quinto_contenido</h5>
+                                <h5>@Model.planes.precio</h5>
+                            </th>
+                           <th>
+                               <input style="display:none" name="fallecido_id" type="number" value="@Model.fallecido.idfallecido" />
+                               <h5>@Model.fallecido.rut</h5>
+                               <h5>@Model.fallecido.nombre</h5>
+                               <h5>@Model.fallecido.apellidoP</h5>
+                               <h5>@Model.fallecido.apellidoM</h5>
+                               <h5>@Model.fallecido.fechaNacimiento</h5>
+                               <h5>@Model.fallecido.fechaDefuncion</h5>
+                           </th>
+        
+                        </tr>
+                    </table>
+                
+    
+
+
+                    <hr />
+                    <h3>Datos del Parque</h3>
+                    <input style="display:none" name="parque_id" type="number" value="@Model.parque.idparque" />
+                    <h5>@Model.parque.nombre</h5>
+                    <h5>@Model.parque.direccion</h5>
+
+                    <hr />
+
+
+                    <select class="select-list" name="pago_id">
+                        @foreach (var pago in Model.listapago)
+                        {
+                            <option value="@pago.idpago">@pago.nombre</option>
+                        }
+                    </select>
+
+                    <hr />
+                    <div class="fecha">
+                        <label for="fechaFuneral">Fecha de Defunción</label>
+                        <div>
+                            <input id="fechaDefuncion" name="fechaFuneral" type="date" />
+                            <input style="display:none" id="created_at" name="created_at" value="@DateTime.Now" />
+                        </div>
+                    </div>
+
+                    <hr />
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Comprar" class="btn btn-default" />
+                        </div>
+                    </div>
+
+                
+            </div>
+                
+</form>
+    </div>
+}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

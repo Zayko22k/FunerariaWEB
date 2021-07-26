@@ -1,57 +1,89 @@
-﻿@model IEnumerable<FunerariaMuertoFeliz.Models.parque>
+﻿@using FunerariaMuertoFeliz.Models
+@model Tuple<List<parque>>
 
 @{
     ViewBag.Title = "Index";
 }
+<style type="text/css">
+    .container-card {
+        width: 100vh;
+        margin-left: 500px;
+        background: #1c1d22;
+        height: 100vh;
+    }
 
+    .container-2 {
+        margin-top: 30px;
+        background: rgba(255, 255, 255, 0.90);
+        border-radius: 5px;
+        margin-left: 150px;
+        height: 300px;
+        width: 600px;
+    }
+
+    .control {
+        left: 4.8%;
+    }
+
+    .container-2 .product-details h1 {
+        display: inline-block;
+        position: relative;
+        font-size: 30px;
+        color: #344055;
+        margin: 0;
+    }
+
+    .btn {
+        margin-left: 20px;
+    }
+
+        .btn span {
+            transition: transform 0.3s;
+            display: inline-block;
+            padding: 10px 15px;
+            font-size: 1.2em;
+            margin: 0;
+        }
+
+    .container-card {
+        position: fixed;
+    }
+    .container-3{
+        margin-top: 200px;
+    }
+</style>
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.direccion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.horario)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.telefono)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.region.nombre)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.direccion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.horario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.region.nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idparque }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idparque }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idparque })
-        </td>
-    </tr>
-}
-
-</table>
+<div class="container-card">
+    <div class="container-3">
+        @foreach (parque parque in Model.Item1)
+        {
+       
+            <div class="container-2">
+                <div class="product-details">
+                    <h1>@parque.nombre</h1>
+                    <h5>@parque.region.nombre</h5>
+                    <div class="control">
+                        <button class="btn">
+                            <span class="shopping-cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
+                            <span class="buy"> @Html.ActionLink("Elegir", "Cargar", new { id = parque.idparque })</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-image">
+                    <img src="https://i2.wp.com/www.elfunerariodigital.com/wp-content/uploads/2019/10/Parque-Cementerio-de-La-Paz-Alcobendas-Parcesa.png?fit=1135%2C584&ssl=1" alt="">
+                    <div class="info">
+                        <h2> Descripción</h2>
+                        <ul>
+                            <li class="information">@parque.direccion</li>
+                            <li class="information">@parque.horario</li>
+                            <li class="information">@parque.telefono</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+   
+        }
+    </div>
+ 
+    </div>

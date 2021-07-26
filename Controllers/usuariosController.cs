@@ -48,17 +48,20 @@ namespace FunerariaMuertoFeliz.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idusuario,nombre,apellidoP,apellidoM,correo,telefono,pass,tipousuario_id,created_at")] usuario usuario)
+        public ActionResult CrearUsuario([Bind(Include = "idusuario,nombre,apellidoP,apellidoM,correo,telefono,pass")] usuario usuario)
         {
             if (ModelState.IsValid)
             {
+                usuario.tipousuario_id = 1;
+         
                 db.usuario.Add(usuario);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                Session["usuario"] = usuario;
+                return Redirect("~/Home/IndexCliente");
             }
 
-            ViewBag.tipousuario_id = new SelectList(db.tipousuario, "idtipousuario", "tipo", usuario.tipousuario_id);
-            return View(usuario);
+     
+            return RedirectToAction("~/Login/IndexLogin",usuario);
         }
 
         // GET: usuarios/Edit/5

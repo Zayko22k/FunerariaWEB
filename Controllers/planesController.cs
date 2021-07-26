@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Dynamic;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -42,6 +43,26 @@ namespace FunerariaMuertoFeliz.Controllers
             ViewBag.tipoplan_id = new SelectList(db.tipoplan, "idtipoplan", "nombre");
             return View();
         }
+        public ActionResult VerCremacion()
+        {
+
+            var linq = from p in db.planes
+                       where p.tipoplan_id == 1
+                       select p;
+          
+            return View(linq.ToList());
+      
+        }
+        public ActionResult VerFunerales()
+        {
+
+            var linq = from p in db.planes
+                       where p.tipoplan_id == 2
+                       select p;
+
+            return View(linq.ToList());
+
+        }
 
         // POST: planes/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
@@ -68,7 +89,9 @@ namespace FunerariaMuertoFeliz.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            planes planes = db.planes.Find(id);
+            var planes= db.planes.Find(id);
+            decimal pl =  planes.precio;
+             planes.precio =   decimal.Parse(pl.ToString("0.###"));
             if (planes == null)
             {
                 return HttpNotFound();
@@ -76,6 +99,28 @@ namespace FunerariaMuertoFeliz.Controllers
             ViewBag.tipoplan_id = new SelectList(db.tipoplan, "idtipoplan", "nombre", planes.tipoplan_id);
             return View(planes);
         }
+
+        public ActionResult Cargar(int?id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            planes planes = db.planes.Find(id);
+
+            Session["planSelect"] = planes;
+            if (planes == null)
+            {
+                return HttpNotFound();
+            } else if(Session["usuario"] == null)
+            {
+                return Redirect("~/Home/Index");
+            }
+            
+            return Redirect("~/fallecidoes/Create");
+        }
+
+
 
         // POST: planes/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 

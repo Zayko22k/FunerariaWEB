@@ -17,9 +17,18 @@ namespace FunerariaMuertoFeliz.Controllers
         // GET: parques
         public ActionResult Index()
         {
-            var parque = db.parque.Include(p => p.region);
-            return View(parque.ToList());
+
+            var parque = db.parque.ToList();
+            usuario u = (usuario)Session["usuario"];
+            var tupModel = new Tuple<List<parque>>(parque);
+            if (u == null)
+            {
+                return Redirect("~/Home/Index");
+            }
+
+            return View(tupModel);
         }
+
 
         // GET: parques/Details/5
         public ActionResult Details(int? id)
@@ -41,6 +50,27 @@ namespace FunerariaMuertoFeliz.Controllers
         {
             ViewBag.region_id = new SelectList(db.region, "idregion", "nombre");
             return View();
+        }
+
+        public ActionResult Cargar(int?id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            parque parque= db.parque.Find(id);
+
+            Session["parqueSelect"] = parque;
+            if (parque== null)
+            {
+                return HttpNotFound();
+            }
+            else if (Session["usuario"] == null)
+            {
+                return Redirect("~/Home/Index");
+            }
+
+            return Redirect("~/boletas/Comprar");
         }
 
         // POST: parques/Create

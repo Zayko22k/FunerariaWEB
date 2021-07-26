@@ -13,7 +13,7 @@
           <Property Name="plan_id" Type="int" Nullable="false" />
           <Property Name="usuario_id" Type="int" Nullable="false" />
           <Property Name="pago_id" Type="int" Nullable="false" />
-          <Property Name="created_at" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
           <Property Name="parque_id" Type="int" Nullable="false" />
           <Property Name="fechaFuneral" Type="datetime" Nullable="false" />
           <Property Name="fallecido_id" Type="int" Nullable="false" />
@@ -54,11 +54,11 @@
           </Key>
           <Property Name="idplanes" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="nchar" MaxLength="100" Nullable="false" />
-          <Property Name="primer_contenido" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="segundo_contenido" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="tercer_contenido" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="cuarto_contenido" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="quinto_contenido" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="primer_contenido" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="segundo_contenido" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="tercer_contenido" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="cuarto_contenido" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="quinto_contenido" Type="nchar" MaxLength="100" Nullable="false" />
           <Property Name="precio" Type="decimal" Precision="6" Scale="3" Nullable="false" />
           <Property Name="tipoplan_id" Type="int" Nullable="false" />
         </EntityType>
@@ -105,7 +105,6 @@
           <Property Name="telefono" Type="nchar" MaxLength="12" Nullable="false" />
           <Property Name="pass" Type="nchar" MaxLength="100" Nullable="false" />
           <Property Name="tipousuario_id" Type="int" Nullable="false" />
-          <Property Name="created_at" Type="timestamp" StoreGeneratedPattern="Computed" />
         </EntityType>
         <Association Name="FK_boleta_boleta">
           <End Role="boleta" Type="Self.boleta" Multiplicity="1" />
@@ -276,7 +275,7 @@
           <Property Name="plan_id" Type="Int32" Nullable="false" />
           <Property Name="usuario_id" Type="Int32" Nullable="false" />
           <Property Name="pago_id" Type="Int32" Nullable="false" />
-          <Property Name="created_at" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="parque_id" Type="Int32" Nullable="false" />
           <Property Name="fechaFuneral" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="fallecido_id" Type="Int32" Nullable="false" />
@@ -328,11 +327,11 @@
           </Key>
           <Property Name="idplanes" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="primer_contenido" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="segundo_contenido" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="tercer_contenido" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="cuarto_contenido" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="quinto_contenido" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="primer_contenido" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="segundo_contenido" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="tercer_contenido" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="cuarto_contenido" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="quinto_contenido" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="precio" Type="Decimal" Precision="6" Scale="3" Nullable="false" />
           <Property Name="tipoplan_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="boleta" Relationship="Self.FK_boleta_plan" FromRole="planes" ToRole="boleta" />
@@ -384,7 +383,6 @@
           <Property Name="telefono" Type="String" MaxLength="12" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="pass" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="tipousuario_id" Type="Int32" Nullable="false" />
-          <Property Name="created_at" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="boleta" Relationship="Self.FK_boleta_usuario" FromRole="usuario" ToRole="boleta" />
           <NavigationProperty Name="tipousuario" Relationship="Self.FK_usuario_tipousuario" FromRole="usuario" ToRole="tipousuario" />
         </EntityType>
@@ -658,7 +656,6 @@
                 <ScalarProperty Name="telefono" ColumnName="telefono" />
                 <ScalarProperty Name="pass" ColumnName="pass" />
                 <ScalarProperty Name="tipousuario_id" ColumnName="tipousuario_id" />
-                <ScalarProperty Name="created_at" ColumnName="created_at" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

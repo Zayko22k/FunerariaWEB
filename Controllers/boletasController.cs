@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -21,7 +22,57 @@ namespace FunerariaMuertoFeliz.Controllers
             return View(boleta.ToList());
         }
 
+        public ActionResult Obituario()
+        {
+            usuario u = (usuario)Session["usuario"];
+            if(u == null)
+            {
+                return Redirect("~/Login/IndexLogin");
+            }
+
+            var linq = from us in db.boleta
+                       where us.usuario_id == u.idusuario
+                       select us;
+         
+            return View(linq.ToList());
+        }
+
         // GET: boletas/Details/5
+        public ActionResult Comprar()
+        {
+            try
+            {
+                planes p = (planes)Session["planSelect"];
+                fallecido f = (fallecido)Session["fallecido"];
+                parque pr = (parque)Session["parqueSelect"];
+                List<pago> pago = new List<pago>();
+                pago= db.pago.ToList(); 
+                if (Session["usuario"] == null)
+                {
+                    return Redirect("~/Home/IndexCliente");
+                }
+                //var tupleModel = new Tuple<planes,fallecido,parque,List<pago>>(p,f,pr,pg);
+                boleta boleta = new boleta();
+                boleta.listapago = pago;
+                boleta.fallecido = f;
+                boleta.parque = pr;
+                boleta.planes = p;
+
+                if (p == null)
+                {
+                    return Redirect("~/Home/IndexCliente");
+                }
+
+                return View(boleta);
+            }
+            catch(Exception e)
+            {
+                _ = e.StackTrace;
+            }
+
+            return View();
+        }
+    
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,8 +88,10 @@ namespace FunerariaMuertoFeliz.Controllers
         }
 
         // GET: boletas/Create
+     
         public ActionResult Create()
         {
+        
             ViewBag.idboleta = new SelectList(db.boleta, "idboleta", "idboleta");
             ViewBag.idboleta = new SelectList(db.boleta, "idboleta", "idboleta");
             ViewBag.fallecido_id = new SelectList(db.fallecido, "idfallecido", "rut");
@@ -49,27 +102,24 @@ namespace FunerariaMuertoFeliz.Controllers
             return View();
         }
 
+
         // POST: boletas/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idboleta,plan_id,usuario_id,pago_id,created_at,parque_id,fechaFuneral,fallecido_id")] boleta boleta)
+        public ActionResult Comprar([Bind(Include = "plan_id,created_at,pago_id,parque_id,fechaFuneral,fallecido_id")] boleta boleta)
         {
             if (ModelState.IsValid)
             {
+                usuario u = (usuario)Session["usuario"];
+                boleta.usuario_id = u.idusuario;
+             
                 db.boleta.Add(boleta);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect("~/Home/IndexCliente");
             }
 
-            ViewBag.idboleta = new SelectList(db.boleta, "idboleta", "idboleta", boleta.idboleta);
-            ViewBag.idboleta = new SelectList(db.boleta, "idboleta", "idboleta", boleta.idboleta);
-            ViewBag.fallecido_id = new SelectList(db.fallecido, "idfallecido", "rut", boleta.fallecido_id);
-            ViewBag.pago_id = new SelectList(db.pago, "idpago", "nombre", boleta.pago_id);
-            ViewBag.parque_id = new SelectList(db.parque, "idparque", "nombre", boleta.parque_id);
-            ViewBag.plan_id = new SelectList(db.planes, "idplanes", "nombre", boleta.plan_id);
-            ViewBag.usuario_id = new SelectList(db.usuario, "idusuario", "nombre", boleta.usuario_id);
             return View(boleta);
         }
 

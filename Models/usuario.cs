@@ -22,18 +22,22 @@ namespace FunerariaMuertoFeliz.Models
         }
     
         public int idusuario { get; set; }
-        public string nombre { get; set; }
-        public string apellidoP { get; set; }
-        public string apellidoM { get; set; }
         [ScaffoldColumn(false)]
-        [Required(ErrorMessage = "Correo requerido")]
+        [Required(ErrorMessage = "Nombre requerido")]
         [StringLength(45)]
+        public string nombre { get; set; }
+        [ScaffoldColumn(false)]
+        [Required(ErrorMessage = "Apellido Paterno requerido")]
+        [StringLength(45)]
+        public string apellidoP { get; set; }
+        [ScaffoldColumn(false)]
+        [Required(ErrorMessage = "Apellido Materno requerido")]
+        [StringLength(45)]
+        public string apellidoM { get; set; }
         public string correo { get; set; }
         public string telefono { get; set; }
-        [Required(ErrorMessage = "Contraseña requerida")]
         public string pass { get; set; }
         public int tipousuario_id { get; set; }
-        public byte[] created_at { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<boleta> boleta { get; set; }

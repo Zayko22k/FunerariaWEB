@@ -51,8 +51,9 @@ namespace FunerariaMuertoFeliz.Controllers
             if (ModelState.IsValid)
             {
                 db.fallecido.Add(fallecido);
+                Session["fallecido"] = fallecido;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect("~/parques/Index");
             }
 
             return View(fallecido);

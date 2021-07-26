@@ -1,0 +1,71 @@
+﻿@model IEnumerable<FunerariaMuertoFeliz.Models.planes>
+@{
+    ViewBag.Title = "VerCremacion";
+  
+}
+
+<style type="text/css">
+    .container-2 {
+        background: rgba(255, 255, 255, 0.90);
+        border-radius: 5px;
+        margin-left: 50px;
+        overflow: hidden;
+        height: 300px;
+        width: 600px;
+    }
+
+    .control {
+        left: 4.8%;
+    }
+
+    .container-2 .product-details h1 {
+        display: inline-block;
+        position: relative;
+        font-size: 30px;
+        color: #344055;
+        margin: 0;
+    }
+
+    .btn span {
+        transition: transform 0.3s;
+        display: inline-block;
+        padding: 10px 15px;
+        font-size: 1.2em;
+        margin: 0;
+    }
+    .container-card {
+        margin-left: 600px;
+       margin-top: 30vh;
+    }
+
+</style>
+<div class="container-card">
+    @foreach (var item in Model)
+    {
+           <div class="container-2">
+               <div class="product-details">
+                   <h1>@Html.DisplayFor(modelItem => item.nombre)</h1>
+                   <div class="control">
+                       <button class="btn">
+                           <span class="price">@Html.DisplayFor(modelItem => item.precio)</span>
+                           <span class="shopping-cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
+                           <span class="buy">@Html.ActionLink("Comprar", "Cargar", new { id = item.idplanes })</span>
+                       </button>
+                   </div>
+               </div>
+               <div class="product-image">
+                   <img src="https://media.istockphoto.com/photos/metal-urn-at-a-funeral-picture-id1044448028?k=6&m=1044448028&s=612x612&w=0&h=HiWaUcujNM4EPXBh0Ndqrv72aKObp6BQxr0HLxD2uxw=" alt="">
+                   <div class="info">
+                       <h2> Descripción</h2>
+                       <ul>
+                           <li class="information">@Html.DisplayFor(modelItem => item.segundo_contenido)</li>
+                           <li class="information">@Html.DisplayFor(modelItem => item.tercer_contenido)</li>
+                           <li class="information">@Html.DisplayFor(modelItem => item.cuarto_contenido)</li>
+                           <li class="information">@Html.DisplayFor(modelItem => item.quinto_contenido)</li>
+                       </ul>
+                   </div>
+               </div>
+           </div>   
+    }
+</div>
+

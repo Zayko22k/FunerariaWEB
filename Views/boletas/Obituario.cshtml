@@ -1,0 +1,79 @@
+﻿@model IEnumerable<FunerariaMuertoFeliz.Models.boleta>
+
+@{
+    ViewBag.Title = "Obituario";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+
+<style>
+    .container-2{
+        margin-top: 400px;
+    }
+    .table th{
+        max-width: 500px;
+    }
+    .table tr {
+        max-width: 500px;
+    }
+</style>
+<div class="container-2">
+   
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Fecha Compra")
+            </th>
+            <th>
+                @Html.DisplayName("Fecha Funeral")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fallecido.rut)
+            </th>
+            <th>
+                @Html.DisplayName("Tipo de pago")
+            </th>
+            <th>
+                @Html.DisplayName("Nombre parque")
+            </th>
+            <th>
+                @Html.DisplayName("Nombre plan")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.usuario.nombre)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.created_at)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fechaFuneral)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fallecido.rut)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pago.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.parque.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.planes.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.usuario.nombre)
+                </td>
+         
+            </tr>
+        }
+
+    </table>
+
+
+</div>
+

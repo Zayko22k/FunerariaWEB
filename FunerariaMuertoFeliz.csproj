@@ -139,6 +139,7 @@
     <Compile Include="Controllers\tipoplansController.cs" />
     <Compile Include="Controllers\tipousuariosController.cs" />
     <Compile Include="Controllers\usuariosController.cs" />
+    <Compile Include="Filters\VerifySession.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -208,8 +209,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\Funeraria.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Funeraria.Context.cs</LastGenOutput>
       <DependentUpon>Funeraria.edmx</DependentUpon>
+      <LastGenOutput>Funeraria.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\Funeraria.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -218,6 +219,11 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\mycss\myStyle.scss" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <EntityDeploy Include="Models\Funeraria.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Funeraria.Designer.cs</LastGenOutput>
@@ -225,11 +231,6 @@
     <Content Include="Models\Funeraria.edmx.diagram">
       <DependentUpon>Funeraria.edmx</DependentUpon>
     </Content>
-    <Content Include="Content\mycss\myStyle.scss" />
-    <None Include="compilerconfig.json" />
-    <None Include="compilerconfig.json.defaults">
-      <DependentUpon>compilerconfig.json</DependentUpon>
-    </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -254,7 +255,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\boletas\Create.cshtml" />
     <Content Include="Views\boletas\Delete.cshtml" />
     <Content Include="Views\boletas\Details.cshtml" />
@@ -305,9 +305,14 @@
     <Content Include="Views\Home\IndexCliente.cshtml" />
     <Content Include="Views\Home\IndexAdmin.cshtml" />
     <Content Include="Views\Login\IndexLogin.cshtml" />
+    <Content Include="Views\planes\VerCremacion.cshtml" />
+    <Content Include="Views\planes\VerFunerales.cshtml" />
+    <Content Include="Views\boletas\Comprar.cshtml" />
+    <Content Include="Views\boletas\Obituario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Clases\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

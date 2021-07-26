@@ -1,7 +1,50 @@
 ﻿
 @{
     ViewBag.Title = "IndexCliente";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
 }
 
+<style>
+    .carousel{
+        margin-top: 200px;
+    }
+</style>
 <h2>IndexCliente</h2>
-
+<div class="container">
+    <div class="carousel">
+        <input type="radio" id="carousel-1" name="carousel[]" checked>
+        <input type="radio" id="carousel-2" name="carousel[]">
+        <input type="radio" id="carousel-3" name="carousel[]">
+        <input type="radio" id="carousel-4" name="carousel[]">
+        <input type="radio" id="carousel-5" name="carousel[]">
+        <ul class="carousel__items">
+            <li class="carousel__item"><img src="https://www.dignitymemorial.com/dfsmedia/042808e1630c49a48950d5077d6556eb/20889-50068/a14-2024" alt=""  width="880" height="600"></li>
+            <li class="carousel__item"><img src="https://www.dignitymemorial.com/dfsmedia/042808e1630c49a48950d5077d6556eb/20983-50065" alt="" width="880" height="600"></li>
+            <li class="carousel__item"><img src="http://c.files.bbci.co.uk/138A3/production/_101053008_duelocolumpio.jpg" alt="" width="880" height="600"></li>
+            <li class="carousel__item"><img src="https://media.istockphoto.com/photos/thinking-broody-angel-statue-on-malostransky-cemetery-prague-czech-picture-id903881702?b=1&k=6&m=903881702&s=170667a&w=0&h=PhSAttj-cDe7AU2XChJB6dyB1DvFRQe_o3zY1_1dopk=" alt="" width="880" height="600"></li>
+            <li class="carousel__item"><img src="https://live.staticflickr.com/65535/51085791376_13828d989d_c.jpg" alt="" width="880" height="600"></li>
+          
+        </ul>
+        <div class="carousel__prev">
+            <label for="carousel-1"></label>
+            <label for="carousel-2"></label>
+            <label for="carousel-3"></label>
+            <label for="carousel-4"></label>
+            <label for="carousel-5"></label>
+        </div>
+        <div class="carousel__next">
+            <label for="carousel-1"></label>
+            <label for="carousel-2"></label>
+            <label for="carousel-3"></label>
+            <label for="carousel-4"></label>
+            <label for="carousel-5"></label>
+        </div>
+        <div class="carousel__nav">
+            <label for="carousel-1"></label>
+            <label for="carousel-2"></label>
+            <label for="carousel-3"></label>
+            <label for="carousel-4"></label>
+            <label for="carousel-5"></label>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,13 @@
 ﻿/*Begin Nav Bar*/
+body {
+    font-family: "Varela Round", sans-serif;
+    background-image:url("https://s2.best-wallpaper.net/wallpaper/2880x1800/2012/Cemetery-trees_2880x1800.jpg");
+   background-color:brown;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+   
+}
 .topnav {
     background-color: #000000;
     overflow: hidden;
@@ -69,7 +78,9 @@
     .nav-head img {
         margin-left: 10%;
     }
-
+.nav-user{
+   margin-left: 200px;
+}
 /*Nav user*/
 #miCuenta {
     margin-left: 70%;
@@ -82,7 +93,7 @@
     text-align: center;
     border-radius: 5px;
     overflow: hidden;
-    margin: 5em auto;
+    margin: 1em auto;
     height: 350px;
     width: 700px;
 }
@@ -98,7 +109,7 @@
 }
 
 .container-2 .product-details h1 {
-    font-family: 'Bebas Neue', cursive;
+ 
     display: inline-block;
     position: relative;
     font-size: 30px;
@@ -112,7 +123,7 @@
         right: 0%;
         top: 0%;
         transform: translate(25px, -15px);
-        font-family: 'Bree Serif', serif;
+       
         display: inline-block;
         background: #ffe6e6;
         border-radius: 5px;
@@ -130,24 +141,18 @@
     width: 50%;
 }
 
-
-.container-2 .product-details > p {
-    font-family: 'EB Garamond', serif;
-    text-align: center;
-    font-size: 18px;
-    color: #7d7d7d;
-}
-
 .control {
     position: absolute;
     bottom: 20%;
     left: 22.8%;
 }
-
+.product-image li {
+    margin-left: 10px;
+}
 .btn {
     transform: translateY(0px);
     transition: 0.3s linear;
-    background: #809fff;
+    background: #000000;
     border-radius: 5px;
     position: relative;
     overflow: hidden;
@@ -158,14 +163,17 @@
     padding: 0;
     margin: 0;
 }
+    .btn a {
+        color: #ffffff;
+    }
 
     .btn:hover {
         transform: translateY(-6px);
-        background: #1a66ff;
+        background: #FF4B2B;
     }
 
     .btn span {
-        font-family: 'Farsan', cursive;
+       
         transition: transform 0.3s;
         display: inline-block;
         padding: 10px 20px;
@@ -226,7 +234,7 @@
 
 .info {
     background: rgba(27, 26, 26, 0.9);
-    font-family: 'Bree Serif', serif;
+  
     transition: all 0.3s ease-out;
     transform: translateX(-100%);
     position: absolute;
@@ -485,4 +493,57 @@
         margin: 0 5px;
         height: 40px;
         width: 40px;
+    }
+  
+    /*Container compra*/
+.container-compra {
+    background: rgba(255, 255, 255, 0.90);
+    position:fixed;
+    text-align: center;
+    overflow: hidden;
+    margin: 1em auto;
+    margin-top: 15vh;
+    margin-left: 600px;
+    height: 700px;
+    width: 700px;
+    position: relative;
+    text-align: left;
+    overflow: hidden;
+    padding: 30px;
+    float: left;
+    
+}
+/*select region*/
+.select-list {
+   
+    width: 250px;
+    height: 40px;
+}
+
+    .select-list option {
+        padding: 0 30px 0 10px;
+        min-height: 40px;
+        display: flex;
+        align-items: center;
+        background-color: aliceblue;
+        border-top: #222 solid 1px;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        pointer-events: none;
+        order: 2;
+        z-index: 1;
+        transition: background .4s ease-in-out;
+        box-sizing: border-box;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .select-list option:hover {
+        background-color:aliceblue;
+    }
+
+    .select-list:focus .option {
+        position: relative;
+        pointer-events: all;
     }
