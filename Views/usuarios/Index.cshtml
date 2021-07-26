@@ -4,35 +4,31 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-<div >
+<div class="contUsuarios">
     <h2>Lista de usuarios</h2>
 
-    <p>
-        @Html.ActionLink("Crear Nuevo", "Create")
-    </p>
+    
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.nombre)
+                @Html.DisplayName("Nombre")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.apellidoP)
+                @Html.DisplayName("Apellido Paterno")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.apellidoM)
+                @Html.DisplayName("Apellido Materno")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.correo)
+                @Html.DisplayName("Correo")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.telefono)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.pass)
+                @Html.DisplayName("Teléfono")
             </th>
 
+
             <th>
-                @Html.DisplayNameFor(model => model.tipousuario.tipo)
+                @Html.DisplayName("Tipo Usuario")
             </th>
             <th></th>
         </tr>
@@ -55,17 +51,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.telefono)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.pass)
-                </td>
 
                 <td>
                     @Html.DisplayFor(modelItem => item.tipousuario.tipo)
                 </td>
                 <td>
-                    @Html.ActionLink("Editar", "Edit", new { id = item.idusuario }) |
-                    @Html.ActionLink("Detalles", "Details", new { id = item.idusuario }) |
-                    @Html.ActionLink("Eliminar", "Delete", new { id = item.idusuario })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.idusuario }, new { @class = "btnEditar btn" })
                 </td>
             </tr>
         }

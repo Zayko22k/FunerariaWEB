@@ -139,7 +139,7 @@ namespace FunerariaMuertoFeliz.Controllers
             {
                 db.Entry(planes).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexAdmin");
             }
             ViewBag.tipoplan_id = new SelectList(db.tipoplan, "idtipoplan", "nombre", planes.tipoplan_id);
             return View(planes);

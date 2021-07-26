@@ -12,7 +12,7 @@
    
 </head>
 <body>
-    <nav class="navbar navbar-default" role="navigation">
+    <nav class="shift navbar" role="navigation">
         <!-- El logotipo y el icono que despliega el menú se agrupan
          para mostrarlos mejor en los dispositivos móviles -->
         <div class="navbar-header">
@@ -29,7 +29,7 @@
          otro elemento que se pueda ocultar al minimizar la barra -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a>@Html.ActionLink("Listar Clientes", "Index", "usuarios")</a></li>
+                <li class="active"  my-2 my-sm-0><a>@Html.ActionLink("Listar Clientes", "Index", "usuarios")</a></li>
                 <li><a>@Html.ActionLink("Gestionar Parque", "IndexAdmin", "parques")</a></li>
                 <li><a>@Html.ActionLink("Gestionar Planes", "IndexAdmin", "planes")</a></li>
                 <li class="dropdown">
@@ -46,17 +46,13 @@
             
 
             <ul class="nav navbar-nav navbar-right">
-
-              
-                <li class="contBoton"><button type="button" class="btn btn-danger">Cerrar Sesión</button></li>
+                <li class="contBoton">@Html.ActionLink("Cerrar Sesión", "Logout", "Login")</li>
             </ul>
         </div>
     </nav>
 
     <!--Bar -->
-    <div class="nav-head">
-
-    </div>
+    
     <div class="contRender">
 
         @RenderBody()
@@ -76,7 +72,19 @@
         }
 
     </script>
-
+    <div class="footer-basic">
+        <footer>
+            <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a></div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Home</a></li>
+                <li class="list-inline-item"><a href="#">Services</a></li>
+                <li class="list-inline-item"><a href="#">About</a></li>
+                <li class="list-inline-item"><a href="#">Terms</a></li>
+                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+            </ul>
+            <p class="copyright">Company Name © 2018</p>
+        </footer>
+    </div>
 </body>
 </html>
 

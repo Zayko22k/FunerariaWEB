@@ -31,28 +31,30 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.direccion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.horario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.region.nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.idparque }, new { @class = "btn btnEditar" }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.idparque }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.idparque })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.nombre)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.direccion)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.horario)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.telefono)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.region.nombre)
+    </td>
+    <td>
+        @Html.ActionLink("Editar", "Edit", new { id = item.idparque }, new { @class = "btnEditar btn" })
+    </td>
+
+    <td>
+        @Html.ActionLink("Eliminar", "Delete", new { id = item.idparque }, new { @class = "btnEliminar btn" })
+    </td>
+</tr>
 }
 
 </table>
