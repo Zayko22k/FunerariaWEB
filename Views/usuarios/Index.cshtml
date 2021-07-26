@@ -2,70 +2,73 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+<div >
+    <h2>Lista de usuarios</h2>
 
-<h2>Index</h2>
+    <p>
+        @Html.ActionLink("Crear Nuevo", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.apellidoP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.apellidoM)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.correo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pass)
+            </th>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.apellidoP)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.apellidoM)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.correo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.telefono)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.pass)
-        </th>
-    
-        <th>
-            @Html.DisplayNameFor(model => model.tipousuario.tipo)
-        </th>
-        <th></th>
-    </tr>
+            <th>
+                @Html.DisplayNameFor(model => model.tipousuario.tipo)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.apellidoP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.apellidoM)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.correo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.pass)
-        </td>
-    
-        <td>
-            @Html.DisplayFor(modelItem => item.tipousuario.tipo)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idusuario }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idusuario }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idusuario })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.apellidoP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.apellidoM)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.correo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.telefono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pass)
+                </td>
 
-</table>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tipousuario.tipo)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.idusuario }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.idusuario }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.idusuario })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

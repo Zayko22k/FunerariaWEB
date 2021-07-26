@@ -36,7 +36,14 @@ namespace FunerariaMuertoFeliz.Controllers
          
             return View(linq.ToList());
         }
-
+    /*  public ActionResult ObituarioYear()
+     {
+         List<boleta> boleta = db.boleta.ToList();
+            var result = db.boleta.Include(x => x.parque)
+                 .GroupBy(x => new { x.parque.nombre, x.parque.idparque })
+                 .Select(x => new { parque = x.Key, Total = x.Count() }).ToList();
+            return View(result);
+     }*/
         // GET: boletas/Details/5
         public ActionResult Comprar()
         {

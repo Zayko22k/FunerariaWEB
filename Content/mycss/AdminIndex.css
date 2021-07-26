@@ -1,0 +1,28 @@
+﻿body {
+}
+.nav-head{
+
+}
+img{
+    margin-top: 4px;
+    width: 80px;
+    height: 50px;
+}
+
+.contBoton{
+    text-align: center;
+}
+
+.contRender{
+    width: 70%;
+    margin-right:40px;
+    margin-left: 40px;
+}
+
+.btn{
+    background-color:yellow;
+}
+
+    .btn btnEditar {
+        background-color: yellow;
+    }

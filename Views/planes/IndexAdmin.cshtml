@@ -1,0 +1,76 @@
+﻿@model IEnumerable<FunerariaMuertoFeliz.Models.planes>
+
+@{
+    ViewBag.Title = "IndexAdmin";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>IndexAdmin</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Nombre")
+        </th>
+        <th>
+            @Html.DisplayName("Descripción")
+        </th>
+        <th>
+            @Html.DisplayName("Descripción 2")
+        </th>
+        <th>
+            @Html.DisplayName("Descripción 3")
+        </th>
+        <th>
+            @Html.DisplayName("Descripción 4")
+        </th>
+        <th>
+            @Html.DisplayName("Descripción 5")
+        </th>
+        <th>
+            @Html.DisplayName("Precio")
+        </th>
+        <th>
+            @Html.DisplayName("Tipo Plan")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.primer_contenido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.segundo_contenido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tercer_contenido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cuarto_contenido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.quinto_contenido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.precio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipoplan.nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.idplanes }, new {@class="btn btnEditar" }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.idplanes }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.idplanes })
+        </td>
+    </tr>
+}
+
+</table>

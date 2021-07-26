@@ -28,6 +28,11 @@ namespace FunerariaMuertoFeliz.Controllers
 
             return View(tupModel);
         }
+        public ActionResult IndexAdmin()
+        {
+            var parque = db.parque.Include(p => p.region);
+            return View(parque.ToList());
+        }
 
 
         // GET: parques/Details/5

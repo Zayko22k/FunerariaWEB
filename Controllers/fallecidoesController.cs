@@ -19,7 +19,14 @@ namespace FunerariaMuertoFeliz.Controllers
         {
             return View(db.fallecido.ToList());
         }
-
+        public ActionResult ObituarioYear()
+        {
+            var grouped = (from p in db.fallecido.ToList()
+                           group p by new { month = p.fechaDefuncion.Month, year = p.fechaDefuncion.Year} into d
+                           select new { dt = string.Format("{0}/{1}", d.Key.month, d.Key.year), count = d.Count() }).OrderByDescending(g => g.dt);
+ 
+            return View(grouped);
+        }
         // GET: fallecidoes/Details/5
         public ActionResult Details(int? id)
         {

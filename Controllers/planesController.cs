@@ -21,6 +21,12 @@ namespace FunerariaMuertoFeliz.Controllers
             var planes = db.planes.Include(p => p.tipoplan);
             return View(planes.ToList());
         }
+        // GET: planes para el admin
+        public ActionResult IndexAdmin()
+        {
+            var planes = db.planes.Include(p => p.tipoplan);
+            return View(planes.ToList());
+        }
 
         // GET: planes/Details/5
         public ActionResult Details(int? id)

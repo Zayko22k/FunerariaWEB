@@ -1,7 +1,82 @@
 ﻿
-@{
-    ViewBag.Title = "_LayoutAdmin";
-}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    @Styles.Render("~/Content/css")
+    <link rel="Stylesheet" href="~/Content/mycss/AdminIndex.css" type="text/css" />
+   
+</head>
+<body>
+    <nav class="navbar navbar-default" role="navigation">
+        <!-- El logotipo y el icono que despliega el menú se agrupan
+         para mostrarlos mejor en los dispositivos móviles -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Desplegar navegación</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <img alt="Trulli" src="~/Content/Imagenes/logoEmpresa.png">
+        </div>
+        <!-- Agrupar los enlaces de navegación, los formularios y cualquier
+         otro elemento que se pueda ocultar al minimizar la barra -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a>@Html.ActionLink("Listar Clientes", "Index", "usuarios")</a></li>
+                <li><a>@Html.ActionLink("Gestionar Parque", "IndexAdmin", "parques")</a></li>
+                <li><a>@Html.ActionLink("Gestionar Planes", "IndexAdmin", "planes")</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        Reporte  <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a>@Html.ActionLink("Plan Favorito", "IndexAdmin", "planes")</a></li>
+                        <li><a>@Html.ActionLink("Obituario del año", "ObituarioYear", "fallecidoes")</a></li>
+                    </ul>
+                </li>
+            </ul>
 
-<h2>_LayoutAdmin</h2>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+
+              
+                <li class="contBoton"><button type="button" class="btn btn-danger">Cerrar Sesión</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!--Bar -->
+    <div class="nav-head">
+
+    </div>
+    <div class="contRender">
+
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+
+    </script>
+
+</body>
+</html>
 
