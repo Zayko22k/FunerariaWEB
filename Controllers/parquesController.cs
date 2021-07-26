@@ -23,7 +23,7 @@ namespace FunerariaMuertoFeliz.Controllers
             var tupModel = new Tuple<List<parque>>(parque);
             if (u == null)
             {
-                return Redirect("~/Home/Index");
+                return Redirect("~/Home/IndexAdmin");
             }
 
             return View(tupModel);
@@ -72,7 +72,7 @@ namespace FunerariaMuertoFeliz.Controllers
             }
             else if (Session["usuario"] == null)
             {
-                return Redirect("~/Home/Index");
+                return Redirect("~/Login/IndexLogin");
             }
 
             return Redirect("~/boletas/Comprar");
@@ -89,7 +89,7 @@ namespace FunerariaMuertoFeliz.Controllers
             {
                 db.parque.Add(parque);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexAdmin");
             }
 
             ViewBag.region_id = new SelectList(db.region, "idregion", "nombre", parque.region_id);
@@ -123,7 +123,7 @@ namespace FunerariaMuertoFeliz.Controllers
             {
                 db.Entry(parque).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexAdmin");
             }
             ViewBag.region_id = new SelectList(db.region, "idregion", "nombre", parque.region_id);
             return View(parque);
@@ -152,7 +152,7 @@ namespace FunerariaMuertoFeliz.Controllers
             parque parque = db.parque.Find(id);
             db.parque.Remove(parque);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexAdmin");
         }
 
         protected override void Dispose(bool disposing)
